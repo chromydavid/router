@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Router configurator by Chromy David</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body>
+
+  <div class="container">  
+    <h1 class="header_text">ROUTER configurator</h1>
+    <h6 class="signature">by Chromý David</h6>
+    <form id="form_main">
+    
+    <div id="DIV_hidden_tutorial">
+      <p class="TEXT_tutorial_ho_to_use">NÁVOD K POUŽITÍ :</p>
+      <br>
+      <p class="TEXT_tutorial_ho_to_use">OVLÁDÁNÍ APLIKACE:</p>
+      <p class="TEXT_tutorial_ho_to_use">Vyplňte údaje které si přejete nastavit do routeru.</p>
+      <p class="TEXT_tutorial_ho_to_use">Pokud nějaké nastavení/funkci nechcete tak pole nechejte prázdné.</p>
+      <p class="TEXT_tutorial_ho_to_use">Pro určité funkce je potřeba prvně zadat počet daných funkcí (např. EIGRP)</p>
+      <p class="TEXT_tutorial_ho_to_use">poté stisknout tlačitko vedle a následně vyplnit zobrazené pole.</p>
+      <p class="TEXT_tutorial_ho_to_use">Po kompletním vytlnění stiskněte tlačítko vytvořit script.</p>
+      <br>
+      <p class="TEXT_tutorial_ho_to_use">NASTAVENÍ ROUTERU V CISCO PACKET TRACERU</p>
+      <p class="TEXT_tutorial_ho_to_use">Vytvořený script označte celý a zkopírujte (ctrl+c).</p>
+      <p class="TEXT_tutorial_ho_to_use">Otevřte router v cisco packet trace a jděte do příkazového řádku.</p>
+      <p class="TEXT_tutorial_ho_to_use">Ujistěte se že příkazový řádek vypadá jako jedna z možností :</p>
+      <p class="TEXT_tutorial_ho_to_use">|  router >  |  router#  |  router(config)#  |</p>
+      <p class="TEXT_tutorial_ho_to_use">Nakonec pravo dole stiskněte tlačítko "Paste".</p>
+    </div>
+    <br>
+    <button  type="button" onclick="FUNCTION_show_hidden_tutorial()">Zobrazit návod k použití</button>
+    <br>
+    <br>
+
+
+    
+    <div class="DIV_row">
+      <div class="DIV_block_first">
+        <p class="TEXT_small_text_above_sections">Hostname:</p>
+        <input  class="INPUT_BOX_hostname" type="text" id="hostname" placeholder="název (R1)" value="R1"/>
+      </div>
+
+      <div class="DIV_block_continue">
+          <p class="TEXT_small_text_above_sections">hesla:</p>
+          <input id="password_console" type="text" class="INPUT_BOX_password" placeholder="console (cisco)" value="cisco">
+          <input id="password_privileged" type="text" class="INPUT_BOX_password" placeholder="privileged (cisco)" value="cisco">
+          <input id="password_vty" type="text" class="INPUT_BOX_password" placeholder="VTY (cisco)" value="cisco">
+      </div>
+      
+      <div class="DIV_block_continue">
+        <p class="TEXT_small_text_above_sections">Úvodní zpráva:</p>
+        <input id="message" class="INPUT_BOX_message" type="text" placeholder="zpráva (Ahoj)" value="Ahoj">
+      </div>
+    </div>
+
+
+    <br>
+
+
+    <div class="DIV_block_first">
+      <p class="TEXT_small_text_above_sections">SSHv2:</p>
+      <input class="INPUT_BOX_sshv2" type="text" id="sshv2_domain" placeholder="Doména (pruk.cz)" value=""/>
+      <input class="INPUT_BOX_sshv2" type="text" id="sshv2_username" placeholder="Jméno (cisco)" value=""/>
+      <input class="INPUT_BOX_sshv2" type="text" id="sshv2_password" placeholder="Heslo (cisco)" value=""/>
+    </div>
+
+
+    <br>
+    
+
+    <div class="DIV_row">
+      <div class="DIV_eigrp_ospf_in_one_row">
+        <div class="DIV_block_first">
+          <p class="TEXT_small_text_above_sections">EIGRP:</p>
+          <input id="eigrp_count" class="INPUT_BOX_EIGRP_count" type="text" placeholder="Počet" value="">
+          <button  type="button" onclick="FUNCTION_generate_eigrp_input_boxes()">Použít</button>
+        </div>
+      
+        <div class="DIV_2_input_box_in_one_row">
+          <div id="eigrp_input_boxes"></div>
+        </div>
+      </div>
+      <br>
+
+
+      <div class="DIV_eigrp_ospf_in_one_row">
+        <div class="DIV_block_first">
+          <p class="TEXT_small_text_above_sections">OSPF:</p>
+          <input id="ospf_count" class="INPUT_BOX_EIGRP_count" type="text" placeholder="Počet" value="">
+          <button  type="button" onclick="FUNCTION_generate_ospf_input_boxes()">Použít</button>
+        </div>
+        <div class="DIV_2_input_box_in_one_row">
+          <div id="ospf_input_boxes"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <br>
+
+
+    <div class="DIV_row">
+      <div class="DIV_eigrp_ospf_in_one_row">
+        <div class="DIV_block_first">
+          <p class="TEXT_small_text_above_sections">IP helper:</p>
+          <input id="iphelper_count" class="INPUT_BOX_EIGRP_count" type="text" placeholder="Počet" value="">
+          <button type="button" onclick="FUNCTION_generate_iphelper_input_boxes()">Použít</button>
+        </div>
+      
+        <div class="DIV_2_input_box_in_one_row">
+          <div id="iphelper_input_boxes"></div>
+        </div>
+      </div>
+      <br>
+
+
+      <div class="DIV_eigrp_ospf_in_one_row">
+        <div class="DIV_block_first">
+          <!--
+          EMPTY BLOCK FOR FUTURE NEEDS (RIGHT TO IP HELPER)
+          <p class="TEXT_small_text_above_sections"> JUST EMPTY FOR FUTURE:</p>
+          <input id="ospf_count" class="INPUT_BOX_EIGRP_count" type="text" placeholder="Počet" value="">
+          <button type="button" onclick="FUNCTION_generate_ospf_input_boxes()">Použít</button>
+          //-->
+        </div>
+        <div class="DIV_2_input_box_in_one_row">
+          <div id="ospf_input_boxes"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <br>
+
+    
+    <div class="DIV_block_first">
+      <p class="TEXT_small_text_above_sections">DHCP:</p>
+      <input id="dhcp_count" class="INPUT_BOX_DHCP_count" type="text" placeholder="Počet" value="">
+      <button class="BUTTON_generate_dhcp_input_boxes" type="button" onclick="FUNCTION_generate_dhcp_input_boxes()">Použít</button>
+    </div>
+    
+    <div id="dhcp_input_boxes"></div>
+    
+
+
+
+
+
+    <div class="DIV_center">
+    <button class="BUTTON_generate_script" type="button" onclick="FUNCTION_generate_script()">Vytvořit script</button>
+    </div>
+    <div class="DIV_script_container" id="script_container"></div>
+
+
+  </form>
+  </div>
+
+  <script src="script_1.js"></script>
+  <script src="script_2.js"></script>
+</body>
+</html>
