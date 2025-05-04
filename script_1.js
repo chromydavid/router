@@ -31,6 +31,13 @@ function FUNCTION_generate_dhcp_input_boxes() {
     dhcp_def_router.type = "text";
     dhcp_def_router.placeholder = "Default router";
     dhcp_container.appendChild(dhcp_def_router);
+
+    const dhcp_dns = document.createElement("input");
+    dhcp_dns.className = "INPUT_BOX_DHCP";
+    dhcp_dns.id = "dhcp_dns_"+(i+1); //dhcp_dns_1
+    dhcp_dns.type = "text";
+    dhcp_dns.placeholder = "DNS adresa";
+    dhcp_container.appendChild(dhcp_dns);
   }
 }
 

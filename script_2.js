@@ -115,7 +115,8 @@ function FUNCTION_dhcp_script(){
             const dhcp_network = document.getElementById("dhcp_network_"+i).value;
             const dhcp_mask = document.getElementById("dhcp_mask_"+i).value;
             const dhcp_def_router = document.getElementById("dhcp_def_router_"+i).value;
-            a += "\nip dhcp pool "+dhcp_name+"\nnetwork "+dhcp_network+" "+dhcp_mask+"\ndefault-router "+dhcp_def_router+"\nexit";
+            const dhcp_dns = document.getElementById("dhcp_dns_"+i).value;
+            a += "\nip dhcp pool "+dhcp_name+"\nnetwork "+dhcp_network+" "+dhcp_mask+"\ndefault-router "+dhcp_def_router+"\ndns-server "+dhcp_dns+"\nexit";
         }
         a += "\nexit"
         return a;
